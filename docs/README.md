@@ -17,7 +17,7 @@ npm i docsify-cli -g
 - `index.html` 入口文件
 - 每一个文件夹下的`README.md`都会做为主页内容渲染
 - `_sidebar.md`为侧边导航,在这里面可以添加侧边栏导航页面，如html，css，js文件夹
-- .nojekyll 用于阻止 GitHub Pages 忽略掉下划线开头的文件
+- `.nojekyll` 用于阻止 GitHub Pages 忽略掉下划线开头的文件
 
 ## 本地预览
 
