@@ -2,6 +2,8 @@
 
 > 一起尽情学习吧
 
+[:cn:](/zh-cn/) [线上文档](https://saofeng-cyber.github.io/front_web_base/)
+
 ## 项目启动
 
 推荐全局安装 docsify-cli 工具，可以方便地创建及在本地预览生成的文档。
