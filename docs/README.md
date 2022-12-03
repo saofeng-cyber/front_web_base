@@ -5,7 +5,6 @@
 
 [:cn:](/zh-cn/) [线上文档](https://saofeng-cyber.github.io/front_web_base/)
 
-
 ## 项目启动
 
 推荐全局安装 docsify-cli 工具，可以方便地创建及在本地预览生成的文档。
@@ -31,17 +30,6 @@ docsify serve docs
 
 !> 更多命令行工具用法，参考 [docsify-cli](https://github.com/docsifyjs/docsify-cli) 文档
 
-## Vue
+## 图片缩放预览测试
 
-``` Vue
-<!-- Hide in docsify, show elsewhere (e.g. GitHub) -->
-<p v-if="false">Text for GitHub</p>
-
-<!-- Sequenced content (i.e. loop)-->
-<ul>
-  <li v-for="i in 3">Item {{ i }}</li>
-</ul>
-
-<!-- JavaScript expressions -->
-<p>2 + 2 = {{ 2 + 2 }}</p>
-```
+![图片缩放预览测试](./images/mn1.jpg)
