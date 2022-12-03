@@ -31,6 +31,17 @@ docsify serve docs
 
 !> 更多命令行工具用法，参考 [docsify-cli](https://github.com/docsifyjs/docsify-cli) 文档
 
-## 转到
+## Vue
 
-孙明刚
+``` Vue
+<!-- Hide in docsify, show elsewhere (e.g. GitHub) -->
+<p v-if="false">Text for GitHub</p>
+
+<!-- Sequenced content (i.e. loop)-->
+<ul>
+  <li v-for="i in 3">Item {{ i }}</li>
+</ul>
+
+<!-- JavaScript expressions -->
+<p>2 + 2 = {{ 2 + 2 }}</p>
+```
