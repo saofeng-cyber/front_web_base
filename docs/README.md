@@ -1,6 +1,6 @@
 # FrontWebBase
 
-> 一起尽情学习吧
+> 一起尽情学习吧 😀
 
 [:cn:](/zh-cn/) [线上文档](https://saofeng-cyber.github.io/front_web_base/)
 
