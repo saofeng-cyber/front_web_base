@@ -28,4 +28,3 @@ docsify serve docs
 ```
 
 !> 更多命令行工具用法，参考 [docsify-cli](https://github.com/docsifyjs/docsify-cli) 文档
-
