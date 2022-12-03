@@ -1,8 +1,10 @@
 # FrontWebBase
 
-> 一起尽情学习吧 😀
+> [!tip]
+一起尽情学习吧 😀
 
 [:cn:](/zh-cn/) [线上文档](https://saofeng-cyber.github.io/front_web_base/)
+
 
 ## 项目启动
 
@@ -21,10 +23,14 @@ npm i docsify-cli -g
 
 ## 本地预览
 
-通过运行 docsify serve 启动一个本地服务器，可以方便地实时预览效果。默认访问地址 http://localhost:3000 。
+通过运行 docsify serve 启动一个本地服务器，可以方便地实时预览效果。默认访问地址 <http://localhost:3000> 。
 
 ``` npm
 docsify serve docs
 ```
 
 !> 更多命令行工具用法，参考 [docsify-cli](https://github.com/docsifyjs/docsify-cli) 文档
+
+## 转到
+
+孙明刚
