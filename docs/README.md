@@ -28,8 +28,21 @@ npm i docsify-cli -g
 docsify serve docs
 ```
 
-!> 更多命令行工具用法，参考 [docsify-cli](https://github.com/docsifyjs/docsify-cli) 文档
+> [!attention]
+更多命令行工具用法，参考 [docsify-cli](https://github.com/docsifyjs/docsify-cli) 文档
 
 ## 图片缩放预览测试
 
 ![图片缩放预览测试](./images/mn1.jpg)
+
+## 表格测试
+
+| 姓名   | 性别 | 年龄  |
+| ------ | ---- | ----- |
+| 孙明刚 | 男   |  24   |
+| 董洁   | 女   |  21   |
+| 蓝胖子 | 男   | 120天 |
+
+## 分割线展示
+
+----
