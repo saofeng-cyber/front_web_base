@@ -9,6 +9,7 @@
 * **Vue**
 ** [Vue](vue/ "Vue页面知识库")
 * **uniapp**
-** [内置组件](uniapp/webview.md)
+** [组件](uniapp/webview.md)
+** [全局文件](uniapp/pagejson.md)
 * **参考例子**
 ** [网易云API](NeteaseCloudMusic/ "网易云API")
