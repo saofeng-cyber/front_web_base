@@ -11,7 +11,7 @@
 ![配置项列表](images/6b8c19166ccf1641b38451f7d5ed242.png)
 以下是一个包含了所有配置选项的 `pages.json`:
 
-``` json
+``` js
 {
  "pages": [{
   "path": "pages/component/index",
