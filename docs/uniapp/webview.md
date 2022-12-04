@@ -7,7 +7,8 @@
 
 - 可滚动视图区域。用于区域滚动。
 - 需注意在webview渲染的页面中，区域滚动的性能不及页面滚动。
-- 使用竖向滚动时，需要给 `<scroll-view>` 一个固定高度，通过 css 设置 height；使用横向滚动时，需要给`<scroll-view>`添加`white-space: nowrap;`样式。
+
+?> 使用竖向滚动时，需要给 `<scroll-view>` 一个固定高度，通过 css 设置 height；使用横向滚动时，需要给`<scroll-view>`添加`white-space: nowrap;`样式。
 
 >[!tip]
 Tips 注意事项
