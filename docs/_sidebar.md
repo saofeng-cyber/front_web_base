@@ -5,7 +5,7 @@
 * **CSS3**
 ** [CSS3](css/)
 * **JavaScript**
-** [JavaScript](js/ "JS页面知识库")
+** [方法总结](js/ "JS页面知识库")
 * **Vue**
 ** [Vue](vue/ "Vue页面知识库")
 * **uniapp**
