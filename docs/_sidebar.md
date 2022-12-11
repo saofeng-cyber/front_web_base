@@ -14,5 +14,8 @@
 ** [全局文件](uniapp/pagejson.md)
 * TypeScript
 ** [TS](ts/ "TS")
+* Webpack5
+** [简介](webpack/ "webpack5")
+** [配置](webpack/base "webpack5配置")
 * 参考例子
 ** [网易云API](NeteaseCloudMusic/ "网易云API")

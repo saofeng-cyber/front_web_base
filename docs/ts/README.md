@@ -29,6 +29,7 @@ tsc --init
   "declarationMap": true, // 为声明文件生成sourceMap
   "typeRoots": [], // 声明文件目录，默认时node_modules/@types
   "types": [], // 加载的声明文件包
+  "resolveJsonModule": true, // 允许通过import引入json
   "removeComments":true, // 删除注释 
   "noEmit": true, // 不输出文件,即编译后不会生成任何js文件
   "noEmitOnError": true, // 发送错误时不输出任何文件
@@ -86,3 +87,144 @@ tsc --init
 - sourceMap 代码源文件
 - strict 严格模式
 - module 默认common.js  可选es6模式 amd  umd 等
+
+## Rollup打包ts
+
+### 概述
+
+Rollup 是一个 JavaScript 模块打包工具，可以将多个小的代码片段编译为完整的库和应用。与传统的 CommonJS 和 AMD 这一类非标准化的解决方案不同，Rollup 使用的是 ES6 版本 Javascript 中的模块标准。新的 ES 模块可以让你自由、无缝地按需使用你最喜爱的库中那些有用的单个函数。这一特性在未来将随处可用，但 Rollup 让你现在就可以，想用就用。
+
+[Rollup官网](https://www.rollupjs.com/)
+
+### 安装
+
+```npm
+npm install --global rollup
+```
+
+### 配置json文件
+
+```js
+{
+  "name": "rollupTs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=development  rollup -c -w",
+    "build":"cross-env NODE_ENV=produaction  rollup -c"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-serve": "^1.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.31.1",
+    "typescript": "^4.5.5"
+  }
+}
+```
+
+### 配置Rollup文件
+
+```js
+console.log(process.env);
+import ts from 'rollup-plugin-typescript2'
+import path from 'path'
+import serve from 'rollup-plugin-serve'
+import livereload from 'rollup-plugin-livereload'
+import { terser } from 'rollup-plugin-terser'
+import resolve from 'rollup-plugin-node-resolve'
+import repacle from 'rollup-plugin-replace'
+ 
+const isDev = () => {
+    return process.env.NODE_ENV === 'development'
+}
+export default {
+    input: "./src/main.ts",
+    output: {
+        file: path.resolve(__dirname, './lib/index.js'),
+        format: "umd",
+        sourcemap: true
+    },
+ 
+    plugins: [
+        ts(),
+        terser({
+            compress: {
+                drop_console: !isDev()
+            }
+        }),
+        repacle({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+        }),
+        resolve(['.js', '.ts']),
+        isDev() && livereload(),
+        isDev() && serve({
+            open: true,
+            openPage: "/public/index.html"
+        })
+    ]
+}
+```
+
+## Webpack打包ts
+
+### 安装依赖
+
+- 安装webpack   `npm install webpack -D`
+
+- webpack4以上需要 `npm install  webpack-cli -D`
+
+- 编译TS  `npm install ts-loader -D`
+
+- TS环境 `npm install typescript -D`
+
+- 热更新服务 `npm install  webpack-dev-server -D`
+
+- HTML模板 `npm install html-webpack-plugin -D`
+
+### 配置文件
+
+```js
+const path = require('path')
+const htmlWebpackPlugin = require('html-webpack-plugin')
+module.exports = {
+    entry: "./src/index.ts",
+    mode: "development",
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: "index.js"
+    },
+    stats: "none",
+    resolve: {
+        extensions: ['.ts', '.js'],
+        alias: {
+            '@': path.resolve(__dirname, './src')
+        }
+    },
+    module: {
+        rules: [
+            {
+                test: /\.ts$/,
+                use: "ts-loader"
+            }
+        ]
+    },
+    devServer: {
+        port: 1988,
+        proxy: {}
+    },
+    plugins: [
+        new htmlWebpackPlugin({
+            template: "./public/index.html"
+        })
+    ]
+}
+```
