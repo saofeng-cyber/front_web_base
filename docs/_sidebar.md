@@ -4,7 +4,7 @@
 ** [基础知识](html/ "基础知识")
 * CSS3
 ** [CSS3](css/)
-* avaScript
+* JavaScript
 ** [方法总结](js/ "JS页面知识库")
 * Vue
 ** [简介](vue/ "Vue初识")
