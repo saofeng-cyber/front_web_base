@@ -2,6 +2,126 @@
 
 ## Webpack
 
+```js
+const os = require('os')
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const modeType = process.env.NODE_ENV === 'development' ? 'development' : 'production'
+const mapType = process.env.NODE_ENV === 'cheap-module-source-map' ? 'development' : 'source-map'
+console.log('NODE_ENV:', process.env.NODE_ENV);
+const threads = os.cpus().length
+module.exports = {
+    mode: modeType,
+    entry: './src/index.js',
+    output: {
+        filename: 'js/[name].bundle.js',
+        chunkFilename: 'js/[name].chunk.js',
+        path: resolve(__dirname, 'dist'),
+        clean: true // 每次打包需要清除打包前的文件
+    },
+    devServer: {
+        host: 'localhost',
+        port: 9000,
+        open: true,
+        hot: true
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: resolve(__dirname, 'index.html'),
+            title: 'webpack测试',
+        }),
+        new ESLintPlugin({
+            context: resolve(__dirname, 'src'),
+            exclude: 'node_modules',
+            cache: true // eslint缓存
+        }),
+        // 添加横幅
+        new webpack.BannerPlugin({
+            banner: '骚风----一生浪荡不羁'
+        }),
+        new MiniCssExtractPlugin({
+            // 定义输出文件名和目录
+            filename: 'css/[name][hash].css'
+        })
+    ],
+    module: {
+        rules: [
+            {
+                oneOf: [
+                    {
+                        test: /\.m?js$/,
+                        exclude: /(node_modules|bower_components)/,
+                        use: [
+                            {
+                                loader: "thread-loader", // 开启多进程
+                                options: {
+                                    workers: threads, // 数量
+                                },
+                            },
+                            {
+                                loader: 'babel-loader',
+                                options: {
+                                    cacheDirectory: true, // babel缓存
+                                    cacheCompression: false // 缓存文件是否被压缩
+                                }
+                            }
+                        ],
+                    },
+                    {
+                        test: /\.css$/i,
+                        use: [MiniCssExtractPlugin.loader, "css-loader", {
+                            loader: 'postcss-loader',
+                            options: {
+                                postcssOptions: {
+                                    plugins: [
+                                        'postcss-preset-env',
+                                    ]
+                                }
+                            }
+                        }],
+                    },
+                    {
+                        test: /\.(png|jpe?g|git|webp|svg)/,
+                        type: 'asset/resource',
+                        parser: {
+                            dataUrlCondition: {
+                                maxSize: 10 * 1024 // 4kb
+                            }
+                        },
+                        generator: {
+                            filename: 'images/[hash][ext][query]'
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    devtool: mapType,
+    optimization: {
+        minimize: true,
+        minimizer: [
+            // css压缩也可以写到optimization.minimizer里面，效果一样的
+            new CssMinimizerPlugin(),
+            // 当生产模式会默认开启TerserPlugin，但是我们需要进行其他配置，就要重新写了
+            new TerserPlugin({
+                parallel: threads // 开启多进程
+            })
+        ],
+        splitChunks: {
+            chunks: 'all'
+        },
+        runtimeChunk: {
+            name: entryName => `runtime-${entryName.name}.js`
+        }
+    }
+}
+```
+
 [webpack5参考文档](http://xxpromise.gitee.io/webpack5-docs/)
 
 ## Eslint

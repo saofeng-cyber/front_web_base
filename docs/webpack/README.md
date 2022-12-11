@@ -43,7 +43,7 @@ Webpack 本身功能是有限的:
 
 ### 1. 资源目录
 
-```
+```npm
 webpack_code # 项目根目录（所有指令必须在这个目录运行）
     └── src # 项目源码目录
         ├── js # js文件目录
@@ -86,7 +86,7 @@ console.log(sum(1, 2, 3, 4));
 
 - 初始化`package.json`
 
-```
+```npm
 npm init -y
 ```
 
@@ -96,7 +96,7 @@ npm init -y
 
 - 下载依赖
 
-```
+```npm
 npm i webpack webpack-cli -D
 ```
 
@@ -104,13 +104,13 @@ npm i webpack webpack-cli -D
 
 - 开发模式
 
-```
+```npm
 npx webpack ./src/main.js --mode=development
 ```
 
 - 生产模式
 
-```
+```npm
 npx webpack ./src/main.js --mode=production
 ```
 
